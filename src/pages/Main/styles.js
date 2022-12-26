@@ -72,3 +72,5 @@ ${props => props.loading &&
     `
     }
 `;
+export const List = styled.ul`
+`;
