@@ -13,12 +13,14 @@ export default function Main() {
 
     useEffect(() => {
         const repoStorage = localStorage.getItem("repos");
-        setRepositorios(JSON.parse(repoStorage));
+        if (repoStorage) {
+            setRepositorios(JSON.parse(repoStorage));
+        }
     }, [])
 
-    useEffect(() => {
-        localStorage.setItem("repos", JSON.stringify(repositorios));
-    }, [repositorios])
+    // useEffect(() => {
+    //     localStorage.setItem("repos", JSON.stringify(repositorios));
+    // }, [repositorios])
 
     function handleInputChange(e) {
         setNewRepo(e.target.value)
@@ -46,7 +48,8 @@ export default function Main() {
                     name: response.data.full_name,
                 }
 
-                setRepositorios([...repositorios, data])
+                await setRepositorios([...repositorios, data])
+                localStorage.setItem("repos", JSON.stringify([...repositorios, data]));
                 setNewRepo('')
             } catch (error) {
                 setAlert(true)
@@ -62,6 +65,7 @@ export default function Main() {
     const handleDelete = useCallback((repo) => {
         const find = repositorios.filter(r => r.name !== repo)
         setRepositorios(find)
+        localStorage.setItem("repos", JSON.stringify(find))
     }, [repositorios]);
 
     return (
