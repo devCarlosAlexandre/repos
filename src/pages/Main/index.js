@@ -48,7 +48,7 @@ export default function Main() {
                     name: response.data.full_name,
                 }
 
-                await setRepositorios([...repositorios, data])
+                setRepositorios([...repositorios, data])
                 localStorage.setItem("repos", JSON.stringify([...repositorios, data]));
                 setNewRepo('')
             } catch (error) {
