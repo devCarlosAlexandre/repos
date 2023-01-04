@@ -128,3 +128,14 @@ button{
     }
 }
 `;
+export const FIlterList = styled.div`
+ margin: 15px 0;
+
+ button{
+    outline: 0;
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0 3px;
+ }
+ `;
